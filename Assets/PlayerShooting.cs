@@ -8,6 +8,11 @@ public class PlayerShooting : MonoBehaviour
     public Transform firePointRotation;
     public Transform bulletSpawnPoint;
     public float bulletSpeed = 20f;
+    public int currentClip, maxClipSize = 10, currentAmmo, MaxAmmoSize = 100;
+    public float weapon;
+
+    
+
 
     // Update is called once per frame
     void Update()
@@ -16,10 +21,13 @@ public class PlayerShooting : MonoBehaviour
 
        if(Input.GetButtonDown("Fire1"))
        {
-             Shoot();
-
-
+            Shoot();
        }
+       if(Input.GetKeyDown(KeyCode.R))
+       {
+        Reload();
+       }
+
         
     }
 
@@ -39,15 +47,45 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletprefab, bulletSpawnPoint.position, firePointRotation.rotation);
+        if (currentClip > 0)
+        {
+            GameObject bullet = Instantiate(bulletprefab, bulletSpawnPoint.position, firePointRotation.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = firePointRotation.right * bulletSpeed;
-
         Destroy(bullet, 3f);
+        currentClip--;
+        }
+
+        
+
+
+        
+    }
+    public void Reload()
+    {
+        int relaodAmount = maxClipSize - currentClip;
+        relaodAmount = (currentAmmo - relaodAmount) >=0 ? relaodAmount : currentAmmo;
+        currentClip += relaodAmount;
+        currentAmmo -= relaodAmount;
     }
 
-    
+    public void AddAmmo(int ammoAmount)
+    {
+        currentAmmo += ammoAmount;
+        if(currentAmmo > MaxAmmoSize)
+        {
+            currentAmmo = MaxAmmoSize;
+        }
+    }
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ammo"))
+        {
+            currentAmmo = 100;
+            Destroy(gameObject);
 
+        }
+    }
 
 
 
