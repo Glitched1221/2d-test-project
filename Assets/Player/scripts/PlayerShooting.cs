@@ -15,6 +15,10 @@ public class PlayerShooting : MonoBehaviour
 
 
     // Update is called once per frame
+    void Start()
+    {
+          currentClip = 10;
+    }
     void Update()
     {
        RotateBulletSpawnPointTowardsMouse();
@@ -34,6 +38,7 @@ public class PlayerShooting : MonoBehaviour
     void RotateBulletSpawnPointTowardsMouse()
     {
         Vector3 mousePostion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePostion.z = 0f;
 
         Vector2 direction = (mousePostion - firePointRotation.position).normalized;
         mousePostion.z = 0f;
@@ -82,7 +87,7 @@ public class PlayerShooting : MonoBehaviour
         if(collision.gameObject.CompareTag("Ammo"))
         {
             currentAmmo = 100;
-            Destroy(gameObject);
+            
 
         }
     }
