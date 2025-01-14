@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class Bulletcollideddeath : MonoBehaviour
 {
-     void OnCollisionEnter2D(Collision2D collision)
+    public int damage =5;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject)
+        if(collision.gameObject.CompareTag("Player"))
+            return;
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            
-            Destroy(gameObject);
-
+            collision.GetComponent<Health>()?.TakeDamage(damage);
         }
-    }
-    void Start()
-    {
         
+        Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

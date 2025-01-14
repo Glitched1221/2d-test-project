@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class PlayerShooting : MonoBehaviour
     public Transform bulletSpawnPoint;
     public float bulletSpeed = 20f;
     public int currentClip, maxClipSize = 10, currentAmmo, MaxAmmoSize = 100;
+    public int SetAmmo;
     public float weapon;
+    public int damage = 5;
+    public Text AmmoDisplay;
+    
 
     
 
@@ -55,15 +60,11 @@ public class PlayerShooting : MonoBehaviour
         if (currentClip > 0)
         {
             GameObject bullet = Instantiate(bulletprefab, bulletSpawnPoint.position, firePointRotation.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = firePointRotation.right * bulletSpeed;
-        Destroy(bullet, 3f);
-        currentClip--;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.velocity = firePointRotation.right * bulletSpeed;
+            Destroy(bullet, 3f);
+            currentClip--;
         }
-
-        
-
-
         
     }
     public void Reload()
@@ -91,7 +92,12 @@ public class PlayerShooting : MonoBehaviour
 
         }
     }
-
-
+    private void OnTriggerEnter2D(Collider2D collison)
+    {
+        if (collison.CompareTag("Enemy"))
+        {
+            collison.GetComponent<Health>()?.TakeDamage(damage);
+        }
+    }
 
 }

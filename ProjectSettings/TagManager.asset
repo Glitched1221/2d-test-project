@@ -8,6 +8,7 @@ TagManager:
   - Stealer
   - Health
   - Ammo
+  - Enemy
   layers:
   - Default
   - TransparentFX

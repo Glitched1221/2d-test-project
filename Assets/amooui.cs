@@ -16,7 +16,7 @@ public class amooui : MonoBehaviour
     void Start()
     {
         Amoo = GetComponent<Image>();
-        
+        currentClip = maxClipSize;
 
 
     }

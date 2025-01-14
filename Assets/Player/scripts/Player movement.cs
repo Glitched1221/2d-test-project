@@ -3,20 +3,23 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]         //Tell Unity to add theses components to the gameobject this code is attached to.
-[RequireComponent(typeof(BoxCollider2D))]       //We will still need to tweak some of the settings.
+       //We will still need to tweak some of the settings.
 public class RigidbodyMovement : MonoBehaviour
 {
     Rigidbody2D rb2d;
     public float moveSpeed = 5f;
     public float intailSpeed = 5f;
     public float runMiliplier;
+    public float HP;
+    private bool isDashButtonDown;
     Animator animator;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Debug.Log("Player is spawned");
+        Debug.Log("Rigidbody velocity" + moveSpeed); 
     }
 
     void Update()
@@ -32,6 +35,9 @@ public class RigidbodyMovement : MonoBehaviour
 
         // Assign velocity directly to the Rigidbody
         rb2d.velocity = moveDirection * moveSpeed;
+
+      
     }
+   
 
 }
