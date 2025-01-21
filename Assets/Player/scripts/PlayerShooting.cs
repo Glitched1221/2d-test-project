@@ -14,6 +14,8 @@ public class PlayerShooting : MonoBehaviour
     public float weapon;
     public int damage = 5;
     public Text AmmoDisplay;
+    public float weapondamage;
+    
     
 
     
@@ -35,9 +37,7 @@ public class PlayerShooting : MonoBehaviour
        if(Input.GetKeyDown(KeyCode.R))
        {
         Reload();
-       }
-
-        
+       }         
     }
 
     void RotateBulletSpawnPointTowardsMouse()
@@ -88,16 +88,9 @@ public class PlayerShooting : MonoBehaviour
         if(collision.gameObject.CompareTag("Ammo"))
         {
             currentAmmo = 100;
-            
-
         }
+        
     }
-    private void OnTriggerEnter2D(Collider2D collison)
-    {
-        if (collison.CompareTag("Enemy"))
-        {
-            collison.GetComponent<Health>()?.TakeDamage(damage);
-        }
-    }
+   
 
 }

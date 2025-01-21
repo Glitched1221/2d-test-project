@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bulletcollideddeath : MonoBehaviour
 {
-    public int damage =5;
+    public int damage =10;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))

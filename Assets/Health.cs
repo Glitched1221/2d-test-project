@@ -18,16 +18,13 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP -= damage;
-        Debug.Log("Damge taken");
+        //Debug.Log("Damge taken");
 
         if (HP <= 0)
         {
             Die();
         }
-        if (HP <= 5)
-        {
-         Debug.LogWarning("Enemy Low health");
-        }
+       
 
     }
 

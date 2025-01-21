@@ -10,8 +10,9 @@ public class RigidbodyMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float intailSpeed = 5f;
     public float runMiliplier;
-    public float HP;
+    
     private bool isDashButtonDown;
+    
     Animator animator;
 
     void Start()
@@ -19,7 +20,7 @@ public class RigidbodyMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         Debug.Log("Player is spawned");
-        Debug.Log("Rigidbody velocity" + moveSpeed); 
+       
     }
 
     void Update()
@@ -29,6 +30,7 @@ public class RigidbodyMovement : MonoBehaviour
         animator.SetFloat("InputY", moveInputY);
         animator.SetFloat("InputX", moveInputX);
         moveSpeed = Input.GetKey(KeyCode.LeftShift)? intailSpeed* runMiliplier : intailSpeed;
+
         // Normalise the vector so that we don't move faster when moving diagonally.
         Vector2 moveDirection = new Vector2(moveInputX, moveInputY);
         moveDirection.Normalize();
@@ -36,8 +38,10 @@ public class RigidbodyMovement : MonoBehaviour
         // Assign velocity directly to the Rigidbody
         rb2d.velocity = moveDirection * moveSpeed;
 
-      
+      // Debug.Log("Rigidbody velocity" + moveSpeed); 
+
+       
     }
    
-
+     
 }
