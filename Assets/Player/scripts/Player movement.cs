@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-       //We will still need to tweak some of the settings.
+//We will still need to tweak some of the settings.
 public class RigidbodyMovement : MonoBehaviour
 {
     Rigidbody2D rb2d;
+    private Vector3 moveDir;
     public float moveSpeed = 5f;
     public float intailSpeed = 5f;
     public float runMiliplier;
+    public float dashamount;
+    public KeyCode dashkey = KeyCode.Space;
+    [SerializeField] private LayerMask dashLayerMask;
+    
     
     private bool isDashButtonDown;
     
@@ -38,10 +44,41 @@ public class RigidbodyMovement : MonoBehaviour
         // Assign velocity directly to the Rigidbody
         rb2d.velocity = moveDirection * moveSpeed;
 
+        moveDir = moveDirection;
+
       // Debug.Log("Rigidbody velocity" + moveSpeed); 
 
-       
+      if  (Input.GetKeyDown(dashkey))
+      {
+    
+        if (Input.GetKeyDown(dashkey))
+      {
+            rb2d.MovePosition(transform.position + moveDir * dashamount);
+            isDashButtonDown = true;
+        }
     }
+
+      
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDashButtonDown)
+      {
+            rb2d.MovePosition(transform.position + moveDir * dashamount);
+            isDashButtonDown = false;
+            
+            Vector3 dashpostion = transform.position = moveDir * dashamount;
+
+            RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, moveDir, dashamount);
+            if (raycastHit2d.collider != null)
+            {
+                dashpostion = raycastHit2d.point;
+            }
+        }
+    }
+
+    // Character Controller in Unity 2D! (Move, Dodge, Dash) CodeMonkeyYoutube
    
      
 }

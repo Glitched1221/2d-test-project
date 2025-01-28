@@ -13,8 +13,15 @@ public class PlayerShooting : MonoBehaviour
     public int SetAmmo;
     public float weapon;
     public int damage = 5;
-    public Text AmmoDisplay;
+    public BulletManger bm;
     public float weapondamage;
+
+    public weaponstate state;
+    public enum weaponstate
+    {
+        pistol,
+        shotgun
+    }
     
     
 
@@ -25,9 +32,13 @@ public class PlayerShooting : MonoBehaviour
     void Start()
     {
           currentClip = 10;
+          state = weaponstate.pistol;
     }
     void Update()
     {
+
+        if(Gmcode.GameIsPaused)
+           return;
        RotateBulletSpawnPointTowardsMouse();
 
        if(Input.GetButtonDown("Fire1"))
@@ -57,13 +68,15 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        if (currentClip > 0)
+        if (currentClip > 0 )
         {
             GameObject bullet = Instantiate(bulletprefab, bulletSpawnPoint.position, firePointRotation.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = firePointRotation.right * bulletSpeed;
             Destroy(bullet, 3f);
             currentClip--;
+            bm.ammo --;
+
         }
         
     }
@@ -89,6 +102,11 @@ public class PlayerShooting : MonoBehaviour
         {
             currentAmmo = 100;
         }
+        
+    }
+
+    private void StateHandler()
+    {
         
     }
    
