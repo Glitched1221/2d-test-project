@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,15 +9,22 @@ public class RigidbodyMovement : MonoBehaviour
 {
     Rigidbody2D rb2d;
     private Vector3 moveDir;
+    private Vector3 rollDir;
     public float moveSpeed = 5f;
     public float intailSpeed = 5f;
     public float runMiliplier;
     public float dashamount;
     public KeyCode dashkey = KeyCode.Space;
+    public KeyCode rollkey = KeyCode.F;
     [SerializeField] private LayerMask dashLayerMask;
+    private enum State{
+        Normal,
+        Rolling,
+    }
     
     
     private bool isDashButtonDown;
+    private State state;
     
     Animator animator;
 
@@ -25,12 +32,14 @@ public class RigidbodyMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        Debug.Log("Player is spawned");
+        
+        state = State.Normal;
        
     }
 
     void Update()
     {
+        
         float moveInputX = Input.GetAxisRaw("Horizontal"); // For horizontal movement (left/right)
         float moveInputY = Input.GetAxisRaw("Vertical");   // For vertical movement (up/down)
         animator.SetFloat("InputY", moveInputY);
@@ -48,17 +57,18 @@ public class RigidbodyMovement : MonoBehaviour
 
       // Debug.Log("Rigidbody velocity" + moveSpeed); 
 
-      if  (Input.GetKeyDown(dashkey))
-      {
+           if (Input.GetKeyDown(rollkey))
+           {
+            rollDir = moveDir;
+
+           }
+
     
         if (Input.GetKeyDown(dashkey))
       {
             rb2d.MovePosition(transform.position + moveDir * dashamount);
             isDashButtonDown = true;
         }
-    }
-
-      
     }
 
     private void FixedUpdate()
@@ -68,9 +78,9 @@ public class RigidbodyMovement : MonoBehaviour
             rb2d.MovePosition(transform.position + moveDir * dashamount);
             isDashButtonDown = false;
             
-            Vector3 dashpostion = transform.position = moveDir * dashamount;
+            Vector3 dashpostion = transform.position + moveDir * dashamount;
 
-            RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, moveDir, dashamount);
+            RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, moveDir, dashamount, dashLayerMask);
             if (raycastHit2d.collider != null)
             {
                 dashpostion = raycastHit2d.point;

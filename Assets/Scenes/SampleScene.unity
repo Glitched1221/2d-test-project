@@ -19957,6 +19957,8 @@ MonoBehaviour:
   ammo: 0
   Player: {fileID: 1960582994}
   BulletCount: {fileID: 733216198}
+  ammoinclip: 0
+  AmmoInClip: {fileID: 585251113}
 --- !u!4 &584180121
 Transform:
   m_ObjectHideFlags: 0
@@ -20838,7 +20840,7 @@ GameObject:
   - component: {fileID: 1031129063}
   - component: {fileID: 1031129062}
   - component: {fileID: 1031129065}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Prop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26437,8 +26439,6 @@ GameObject:
   - component: {fileID: 1242980368}
   - component: {fileID: 1242980367}
   - component: {fileID: 1242980370}
-  - component: {fileID: 1242980369}
-  - component: {fileID: 1242980371}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -26455,7 +26455,7 @@ RectTransform:
   m_GameObject: {fileID: 1242980365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5893149, y: 0.078470856, z: 1.5893149}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1487576961}
@@ -26465,8 +26465,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 83.10156, y: 16.300781}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 391, y: 990}
+  m_SizeDelta: {x: 692.8, y: 19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1242980367
 MonoBehaviour:
@@ -26481,7 +26481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23584908, g: 0.17911181, b: 0.17911181, a: 1}
+  m_Color: {r: 0.39239734, g: 0.754717, b: 0.36667857, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -26506,22 +26506,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242980365}
   m_CullTransparentMesh: 1
---- !u!114 &1242980369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242980365}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0ca75daa94ec74f830a7e9e8e79490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  slider: {fileID: 0}
-  maxClipSize: 10
-  currentClip: 0
 --- !u!114 &1242980370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26573,18 +26557,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1242980371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242980365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e4e1cf0fcc6f54f8a598561970af1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1264444761
 GameObject:
   m_ObjectHideFlags: 0
@@ -27376,9 +27348,9 @@ GameObject:
   - component: {fileID: 1960582991}
   - component: {fileID: 1960582994}
   - component: {fileID: 1960582995}
-  - component: {fileID: 1960582996}
   - component: {fileID: 1960582998}
   - component: {fileID: 1960582997}
+  - component: {fileID: 1960582999}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -27472,9 +27444,10 @@ MonoBehaviour:
   runMiliplier: 2
   dashamount: 2
   dashkey: 32
+  rollkey: 102
   dashLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 136
 --- !u!114 &1960582994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27522,19 +27495,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1960582996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960582988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e249b4f42a1ef140b2a279eeaa7d3fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!61 &1960582997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27607,6 +27567,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1960582999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960582988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d4fc78018b56047bf9c8edf6e10278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PmaxHealth: 100
+  PHP: 0
+  healthBar: {fileID: 1242980367}
 --- !u!1 &2022644583
 GameObject:
   m_ObjectHideFlags: 0
