@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3139c2847967141a280cf00507f80a, type: 3}
+  m_Name: Minispeedbuff
+  m_EditorClassIdentifier: 
+  amount: 2
+  rigidbodyMovement: {fileID: 5451829722970962688, guid: ab1d2b71ce401a74784fd6358d1b64c8, type: 3}

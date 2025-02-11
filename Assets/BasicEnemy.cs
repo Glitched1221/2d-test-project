@@ -8,7 +8,7 @@ public class BasicEnemy : MonoBehaviour
 
     NavMeshAgent agent;
     GameObject player;
-    public int damage;
+    public float damage;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,8 @@ public class BasicEnemy : MonoBehaviour
     {
         if (collison.gameObject.CompareTag("Player"))
         {
-            collison.gameObject.GetComponent<Health>()?.TakeDamage(damage);
+            collison.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(damage);
+            Debug.Log("Hit");
         }
     }
 

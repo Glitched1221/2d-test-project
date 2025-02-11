@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.UI;
+using UnityEngine.UI;
 
 public class Gmcode : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Gmcode : MonoBehaviour
      
      public GameObject Pausemenu;
      public static bool GameIsPaused = false;
+     public Slider HealthBar;
 
 
     void Update()
@@ -23,8 +26,7 @@ public class Gmcode : MonoBehaviour
       else{
         Pause();
       }
-
-
+    
     }
     public void StartGame()
     {
@@ -54,4 +56,9 @@ public class Gmcode : MonoBehaviour
     {
       SceneManager.LoadScene("Mainmenu");
     }
+public void UpdateHealthBar(float value)
+    {
+      HealthBar.value = value;
+    }
+
 }

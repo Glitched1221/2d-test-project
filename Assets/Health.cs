@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {
     
     
-    public int maxHealth;
+    public float maxHealth;
     float HP;
     void Start()
     {
@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
         HP = maxHealth;
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         HP -= damage;
         Debug.Log(gameObject.name + " Damage taken");

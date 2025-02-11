@@ -24,7 +24,7 @@ public class RigidbodyMovement : MonoBehaviour
     
     
     private bool isDashButtonDown;
-    private State state;
+  
     
     Animator animator;
 
@@ -33,7 +33,7 @@ public class RigidbodyMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         
-        state = State.Normal;
+        
        
     }
 

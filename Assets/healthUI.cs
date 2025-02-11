@@ -25,7 +25,7 @@ public class healthUI : MonoBehaviour
     void Update()
     {
       
-      //healthBar.fillAmount;
+      
 
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
+    public TimeManager timeManager;
     public GameObject bulletprefab;
     public Transform firePointRotation;
     public Transform bulletSpawnPoint;
@@ -48,7 +49,11 @@ public class PlayerShooting : MonoBehaviour
        if(Input.GetKeyDown(KeyCode.R))
        {
         Reload();
-       }         
+       } 
+       if(Input.GetKeyDown(KeyCode.P))       
+       {
+        timeManager.DoSlowMotion();
+       } 
     }
 
     void RotateBulletSpawnPointTowardsMouse()
