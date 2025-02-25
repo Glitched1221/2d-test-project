@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    public float timecolldown;
+    public float timeablitycolldown;
     public static bool GameIsPaused;
     public float slowdownFactor= 0.05f;
     public float slowndownLength = 2f;
@@ -11,6 +13,8 @@ public class TimeManager : MonoBehaviour
 void Update ()
 {
    Time.timeScale += (1f / slowndownLength * Time.unscaledDeltaTime);
+    timeablitycolldown -= Time.deltaTime;
+
 
    if (GameIsPaused == false)
    {
@@ -23,8 +27,11 @@ void Update ()
 
 public void DoSlowMotion ()
 {
+ if (timeablitycolldown > 0)
+                return;
  Time.timeScale = slowdownFactor;
  Time.fixedDeltaTime = Time.timeScale * 0.02f;
+ timeablitycolldown = timecolldown;
 }
     
 }

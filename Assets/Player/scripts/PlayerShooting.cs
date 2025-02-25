@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
+    public float firecooldown;
+    public float colldownshoot;
     public TimeManager timeManager;
     public GameObject bulletprefab;
     public Transform firePointRotation;
@@ -37,6 +39,8 @@ public class PlayerShooting : MonoBehaviour
     }
     void Update()
     {
+        colldownshoot -= Time.deltaTime;
+         
 
         if(Gmcode.GameIsPaused)
            return;
@@ -72,15 +76,19 @@ public class PlayerShooting : MonoBehaviour
     }
 
     void Shoot()
-    {
+    { 
+        if (colldownshoot > 0)
+                return;
         if (currentClip > 0 )
         {
+           
             GameObject bullet = Instantiate(bulletprefab, bulletSpawnPoint.position, firePointRotation.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = firePointRotation.right * bulletSpeed;
             Destroy(bullet, 3f);
             currentClip--;
             bm.ammo --;
+            colldownshoot = firecooldown;
 
         }
         

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -71,22 +70,46 @@ public class RigidbodyMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (isDashButtonDown)
-      {
-            rb2d.MovePosition(transform.position + moveDir * dashamount);
-            isDashButtonDown = false;
-            
-            Vector3 dashpostion = transform.position + moveDir * dashamount;
+    // private void FixedUpdate()
+    // {
+    //     if (isDashButtonDown)
+    //   {
+    //         Vector3 dashpostion = transform.position + moveDir * dashamount;
 
-            RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, moveDir, dashamount, dashLayerMask);
-            if (raycastHit2d.collider != null)
-            {
-                dashpostion = raycastHit2d.point;
-            }
+            
+
+    //         RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.position, moveDir, dashamount, dashLayerMask);
+    //         if (raycastHit2d.collider != null)
+    //         {
+    //             dashpostion = raycastHit2d.point;
+    //             Debug.Log("hit");
+    //         }
+    //         rb2d.MovePosition(dashpostion);
+    //         isDashButtonDown = false;
+    //   }    
+    // }
+
+    private void FixedUpdate()
+{
+    if (isDashButtonDown)
+    {
+        
+        Vector3 dashPosition = transform.position + moveDir * dashamount;
+
+       
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, moveDir, dashamount, dashLayerMask);
+
+        if (raycastHit.collider != null)
+        {
+            dashPosition = raycastHit.point;
+            Debug.Log("Hit an obstacle");
         }
+
+        rb2d.MovePosition(dashPosition);
+
+        isDashButtonDown = false;
     }
+}
 
     // Character Controller in Unity 2D! (Move, Dodge, Dash) CodeMonkeyYoutube
    
