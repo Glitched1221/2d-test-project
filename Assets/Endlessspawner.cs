@@ -9,6 +9,10 @@ public class Endlessspawner : MonoBehaviour
     float spawnInterval = 2f;
     float mininumSpawnInterval =1f;
     float intervalDeacrease = 0.5f;
+    bool maxenimes;
+    public float enimessamount;
+
+
 
     
 
@@ -16,6 +20,15 @@ public class Endlessspawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+        enimessamount = 0;
+    }
+
+    void Update()
+    {
+        if (enimessamount >= 5f)
+        {
+         maxenimes = true;
+        } 
     }
 
     // Update is called once per fram
@@ -26,13 +39,18 @@ public class Endlessspawner : MonoBehaviour
         {
             if (objectToSpawn != null && spawnPoint != null)
             {
+                if (maxenimes == false)
+                { 
+                enimessamount += 1f;
                 Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
-               }   
+                }  
                 else
                 {
-                    Debug.LogWarning("Ah");
+                    //Debug.LogWarning("Ah");
                 }
-          
+
+                
+            }
             
             yield return new WaitForSeconds(spawnInterval);
             spawnInterval = Mathf.Max(mininumSpawnInterval, spawnInterval - intervalDeacrease);

@@ -10,6 +10,8 @@ public class BulletManger : MonoBehaviour
     public Text BulletCount;
     public int ammoinclip;
     public Text AmmoInClip;
+    public int killcount;
+    public Text Killcount;
     
     // Start is called before the first frame update
  
@@ -21,6 +23,7 @@ public class BulletManger : MonoBehaviour
         ammo = Player.currentAmmo;
         AmmoInClip.text = ammoinclip.ToString();
         ammoinclip = Player.currentClip;
+        Killcount.text = killcount.ToString();
 
     }
 }

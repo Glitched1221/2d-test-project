@@ -9,6 +9,8 @@ TagManager:
   - Health
   - Ammo
   - Enemy
+  - Level1Door
+  - Speed
   layers:
   - Default
   - TransparentFX

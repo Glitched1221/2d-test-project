@@ -8,7 +8,8 @@ public class Health : MonoBehaviour
     
     
     public float maxHealth;
-    float HP;
+    public float HP;
+    public BulletManger bm;
     void Start()
     {
         
@@ -30,6 +31,8 @@ public class Health : MonoBehaviour
 
     void Die()
     {
+        bm.killcount ++;
+
         Destroy(gameObject);
         Debug.Log("Destroyyed");
         Debug.Log("Time taken" + Time.time);

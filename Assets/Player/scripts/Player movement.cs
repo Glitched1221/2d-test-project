@@ -6,6 +6,11 @@ using UnityEngine.EventSystems;
 //We will still need to tweak some of the settings.
 public class RigidbodyMovement : MonoBehaviour
 {
+    public float boostlength;
+    public float boostamount;
+    public float dashcooldown;
+    public float cooldowntimer;
+    public Health hpcount;
     Rigidbody2D rb2d;
     private Vector3 moveDir;
     private Vector3 rollDir;
@@ -38,7 +43,13 @@ public class RigidbodyMovement : MonoBehaviour
 
     void Update()
     {
-        
+        cooldowntimer -= Time.deltaTime;
+
+        if(hpcount.HP <= 0)
+        {
+            
+        }
+
         float moveInputX = Input.GetAxisRaw("Horizontal"); // For horizontal movement (left/right)
         float moveInputY = Input.GetAxisRaw("Vertical");   // For vertical movement (up/down)
         animator.SetFloat("InputY", moveInputY);
@@ -64,7 +75,7 @@ public class RigidbodyMovement : MonoBehaviour
 
     
         if (Input.GetKeyDown(dashkey))
-      {
+        {
             rb2d.MovePosition(transform.position + moveDir * dashamount);
             isDashButtonDown = true;
         }
@@ -90,7 +101,7 @@ public class RigidbodyMovement : MonoBehaviour
     // }
 
     private void FixedUpdate()
-{
+    {   
     if (isDashButtonDown)
     {
         
@@ -109,7 +120,27 @@ public class RigidbodyMovement : MonoBehaviour
 
         isDashButtonDown = false;
     }
-}
+    }
+
+ void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Speed"))
+        {
+           
+            StartCoroutine(SpeedBoost());
+
+        }
+    }
+        public IEnumerator SpeedBoost()
+        {
+           intailSpeed = intailSpeed + boostamount;
+           yield return new WaitForSeconds(boostlength);
+           intailSpeed = intailSpeed - boostamount;
+
+
+
+
+        }
 
     // Character Controller in Unity 2D! (Move, Dodge, Dash) CodeMonkeyYoutube
    
