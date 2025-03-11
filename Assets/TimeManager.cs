@@ -9,16 +9,28 @@ public class TimeManager : MonoBehaviour
     public static bool GameIsPaused;
     public float slowdownFactor= 0.05f;
     public float slowndownLength = 2f;
+    public static Gmcode gmcode;
+     public static bool Gameover;
+
 
 void Update ()
 {
-   Time.timeScale += (1f / slowndownLength * Time.unscaledDeltaTime);
+    if (GameIsPaused == false && Gameover == true)
+    {
+        return;
+    }
+    //Time.timeScale += (1f / slowndownLength * Time.unscaledDeltaTime);
     timeablitycolldown -= Time.deltaTime;
 
 
    if (GameIsPaused == false)
    {
     Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+   }
+   if (Gameover == false)
+   {
+    Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+
    }
 
 
@@ -27,6 +39,13 @@ void Update ()
 
 public void DoSlowMotion ()
 {
+        //Time.timeScale += (1f / slowndownLength * Time.unscaledDeltaTime);
+
+     if (GameIsPaused == false && Gameover == true)
+    {
+        return;
+    }
+
  if (timeablitycolldown > 0)
                 return;
  Time.timeScale = slowdownFactor;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.UI;
 using UnityEngine.UI;
+using System;
 
 public class Gmcode : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class Gmcode : MonoBehaviour
      public GameObject Pausemenu;
      public static bool GameIsPaused = false;
      public Slider HealthBar;
+     public GameObject deathmenu;
+      public static bool Gameover = false;
+    public GameObject winnmenu;
+     public static bool winn = false;
+     
 
 
     void Update()
@@ -25,6 +31,17 @@ public class Gmcode : MonoBehaviour
        }
       else{
         Pause();
+      }
+      if (Gameover == true)
+      {
+        deathmenu.SetActive(true);
+        Time.timeScale = 0f;
+
+        if (winn == true)
+        {
+           winnmenu.SetActive(true);
+        Time.timeScale = 0f;
+        }
       }
     
     }
@@ -60,5 +77,15 @@ public void UpdateHealthBar(float value)
     {
       HealthBar.value = value;
     }
+
+   
+    public void Retry()
+    {
+      Time.timeScale = 1;
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      Gameover = false;
+    }
+   
+
 
 }

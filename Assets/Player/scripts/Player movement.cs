@@ -45,9 +45,9 @@ public class RigidbodyMovement : MonoBehaviour
     {
         cooldowntimer -= Time.deltaTime;
 
-        if(hpcount.HP <= 0)
+        //if (hpcount.HP > 0)
         {
-            
+
         }
 
         float moveInputX = Input.GetAxisRaw("Horizontal"); // For horizontal movement (left/right)

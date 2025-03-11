@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public float PHP;
     public Image healthBar;
     public Gmcode HUD;
+    
     void Start()
     {
         
@@ -34,13 +35,24 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
-        Debug.Log("Destroyyed");
-        Debug.Log("Time taken" + Time.time);
+       Gmcode.Gameover =true;
+      
+        
     }
     void Update()
     {
       healthBar.fillAmount = PHP/PmaxHealth;
-    }    
+      if (PHP <= 0)
+      {
+        Die();
+      }
+
+      if (BulletManger.killcount >= 10)
+      {
+        Gmcode.winn = true;
+      }
+    }   
+
+
 
 }

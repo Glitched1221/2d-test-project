@@ -18,6 +18,8 @@ public class PlayerShooting : MonoBehaviour
     public int damage = 5;
     public BulletManger bm;
     public float weapondamage;
+    public bo bo;
+    public float shoottimer;
 
     public weaponstate state;
     public enum weaponstate
@@ -50,6 +52,12 @@ public class PlayerShooting : MonoBehaviour
        {
             Shoot();
        }
+       if(Input.GetButton("Fire1") && shoottimer <= 0)
+       {
+        Shoot();
+        shoottimer =0.2f;
+       }
+       shoottimer -= Time.deltaTime;
        if(Input.GetKeyDown(KeyCode.R))
        {
         Reload();
@@ -87,7 +95,7 @@ public class PlayerShooting : MonoBehaviour
             rb.velocity = firePointRotation.right * bulletSpeed;
             Destroy(bullet, 3f);
             currentClip--;
-            bm.ammo --;
+            bo.ammo --;
             colldownshoot = firecooldown;
 
         }
