@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Level1Door
   - Speed
+  - Door
   layers:
   - Default
   - TransparentFX

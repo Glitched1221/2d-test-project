@@ -21,6 +21,7 @@ public class RigidbodyMovement : MonoBehaviour
     public KeyCode dashkey = KeyCode.Space;
     public KeyCode rollkey = KeyCode.F;
     [SerializeField] private LayerMask dashLayerMask;
+    
     private enum State{
         Normal,
         Rolling,

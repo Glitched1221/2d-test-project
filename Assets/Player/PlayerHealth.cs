@@ -47,10 +47,7 @@ public class PlayerHealth : MonoBehaviour
         Die();
       }
 
-      if (BulletManger.killcount >= 10)
-      {
-        Gmcode.winn = true;
-      }
+      
     }   
 
 

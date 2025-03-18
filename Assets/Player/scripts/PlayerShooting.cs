@@ -48,21 +48,21 @@ public class PlayerShooting : MonoBehaviour
            return;
        RotateBulletSpawnPointTowardsMouse();
 
-       if(Input.GetButtonDown("Fire1"))
-       {
+         if(Input.GetButtonDown("Fire1"))
+        {
             Shoot();
        }
-       if(Input.GetButton("Fire1") && shoottimer <= 0)
-       {
-        Shoot();
-        shoottimer =0.2f;
-       }
+    //    if(Input.GetButton("Fire1") && shoottimer <= 0)
+    //    {
+    //     Shoot();
+    //     shoottimer =0.2f;
+    //    }
        shoottimer -= Time.deltaTime;
        if(Input.GetKeyDown(KeyCode.R))
        {
         Reload();
        } 
-       if(Input.GetKeyDown(KeyCode.P))       
+       if(Input.GetKeyDown(KeyCode.C))       
        {
         timeManager.DoSlowMotion();
        } 
@@ -85,11 +85,11 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     { 
-        if (colldownshoot > 0)
-                return;
+        
         if (currentClip > 0 )
         {
-           
+        //    if (colldownshoot > 0)
+        //         return;
             GameObject bullet = Instantiate(bulletprefab, bulletSpawnPoint.position, firePointRotation.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = firePointRotation.right * bulletSpeed;
@@ -131,5 +131,5 @@ public class PlayerShooting : MonoBehaviour
         
     }
    
-
+      
 }

@@ -9,7 +9,8 @@ public class Bulletcollideddeath : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
             return;
-
+         if(collision.gameObject.CompareTag("Bullet"))
+            return;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.GetComponent<Health>()?.TakeDamage(damage);
@@ -18,4 +19,10 @@ public class Bulletcollideddeath : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void Start()
+    {
+        
+    }
 }
+
+

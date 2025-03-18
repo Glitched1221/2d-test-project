@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.UI;
 using UnityEngine.UI;
 using System;
 
@@ -36,12 +35,14 @@ public class Gmcode : MonoBehaviour
       {
         deathmenu.SetActive(true);
         Time.timeScale = 0f;
+      } 
 
-        if (winn == true)
-        {
-           winnmenu.SetActive(true);
+      if (winn == true)
+      {
+        winnmenu.SetActive(true);
         Time.timeScale = 0f;
-        }
+
+
       }
     
     }
