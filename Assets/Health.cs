@@ -31,10 +31,11 @@ public class Health : MonoBehaviour
     void Die()
     {
         BulletManger.killcount ++;
+        
 
         Destroy(gameObject);
-        Debug.Log("Destroyyed");
-        Debug.Log("Time taken" + Time.time);
+        // Debug.Log("Destroyyed");
+        // Debug.Log("Time taken" + Time.time);
     }
     
 

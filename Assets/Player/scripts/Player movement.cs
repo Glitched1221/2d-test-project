@@ -11,6 +11,7 @@ public class RigidbodyMovement : MonoBehaviour
     public float dashcooldown;
     public float cooldowntimer;
     public Health hpcount;
+    public PlayerHealth ph;
     Rigidbody2D rb2d;
     private Vector3 moveDir;
     private Vector3 rollDir;
@@ -21,6 +22,8 @@ public class RigidbodyMovement : MonoBehaviour
     public KeyCode dashkey = KeyCode.Space;
     public KeyCode rollkey = KeyCode.F;
     [SerializeField] private LayerMask dashLayerMask;
+    [SerializeField] private LayerMask door;
+
     
     private enum State{
         Normal,
@@ -45,6 +48,7 @@ public class RigidbodyMovement : MonoBehaviour
     void Update()
     {
         cooldowntimer -= Time.deltaTime;
+        
 
         //if (hpcount.HP > 0)
         {
@@ -129,8 +133,13 @@ public class RigidbodyMovement : MonoBehaviour
         {
            
             StartCoroutine(SpeedBoost());
-
         }
+         if(collision.gameObject.CompareTag("Health"))
+         {
+            Debug.Log("a");
+            UpdateHealth();
+         }
+
     }
         public IEnumerator SpeedBoost()
         {
@@ -138,12 +147,15 @@ public class RigidbodyMovement : MonoBehaviour
            yield return new WaitForSeconds(boostlength);
            intailSpeed = intailSpeed - boostamount;
 
-
-
-
         }
+         public IEnumerator UpdateHealth()
+         {
+            yield return new WaitForSeconds(1);
+            ph.PHealthUpdate();
+         }
 
-    // Character Controller in Unity 2D! (Move, Dodge, Dash) CodeMonkeyYoutube
+
+    
    
      
 }

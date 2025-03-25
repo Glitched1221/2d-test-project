@@ -1,20 +1,25 @@
 using System.Collections;
-using Unity.Mathematics;
+using System.Collections.Generic;
+
+
 using UnityEngine;
 
 public class Endlessspawner : MonoBehaviour
 {
-    public GameObject objectToSpawn;
-    public Transform spawnPoint1;
-    public Transform spawnPoint2;
-     public Transform spawnPoint3;
+    public GameObject[] objectToSpawn;
+    public Transform[] spawnPoints;
+
+    // public GameObject spawnPoint2;
+    //  public GameObject spawnPoint3;
 
 
     float spawnInterval = 2f;
     float mininumSpawnInterval =1f;
     float intervalDeacrease = 0.5f;
+    int maxEnimesNum;
     bool maxenimes;
     public float enimessamount;
+    private IEnumerator spawnCoroutine;
 
     
 
@@ -25,13 +30,16 @@ public class Endlessspawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnCoroutine = SpawnEnemies();
         StartCoroutine(SpawnEnemies());
+
         enimessamount = 0;
+        maxEnimesNum = 10;
     }
 
     void Update()
     {
-        if (enimessamount >= 5f)
+        if (enimessamount >= maxEnimesNum)
         {
          maxenimes = true;
         } 
@@ -43,14 +51,19 @@ public class Endlessspawner : MonoBehaviour
     {
         while (true)
         {
-            if (objectToSpawn != null && spawnPoint1 != null)
+            
+            if (objectToSpawn != null)// && spawnPoint != null)
             {
                 if (maxenimes == false)
                 { 
                 enimessamount += 1f;
-                Instantiate(objectToSpawn, spawnPoint1.position, spawnPoint1.rotation);
-                Instantiate(objectToSpawn, spawnPoint2.position, spawnPoint1.rotation);
-                Instantiate(objectToSpawn, spawnPoint3.position, spawnPoint1.rotation);
+                int randEnemy = Random.Range(0, objectToSpawn.Length);
+                int randSpawnPoint = Random.Range(0, spawnPoints.Length);
+
+                Instantiate(objectToSpawn[0], spawnPoints[randSpawnPoint].position, transform.rotation);
+                // Instantiate(objectToSpawn, spawnPoint1.position, spawnPoint1.rotation);
+                // Instantiate(objectToSpawn, spawnPoint2.position, spawnPoint1.rotation);
+                // Instantiate(objectToSpawn, spawnPoint3.position, spawnPoint1.rotation);
 
                 }  
             
@@ -61,7 +74,24 @@ public class Endlessspawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
             spawnInterval = Mathf.Max(mininumSpawnInterval, spawnInterval - intervalDeacrease);
         }
+        
+        
+    }
+    public void DestoyObjects()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject target in gameObjects)
+        {
+            GameObject.Destroy (target);
+        }
     }
 
+    public void StopSpawning()
+    {
+        StopCoroutine(spawnCoroutine);
+    }
+
+    
+    
     
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,15 +23,14 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         PHP -=damageAmount;
-        Debug.Log(gameObject.name + " Damage taken");
+        //Debug.Log(gameObject.name + " Damage taken");
         HUD.UpdateHealthBar(PHP/PmaxHealth);
+        PHealthUpdate();
 
         if (PHP <= 0)
         {
             Die();
         }
-       
-
     }
 
     void Die()
@@ -42,13 +42,17 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
       healthBar.fillAmount = PHP/PmaxHealth;
+      
       if (PHP <= 0)
       {
         Die();
       }
-
-      
-    }   
+      }  
+    public void PHealthUpdate()
+    {
+      healthBar.fillAmount = PHP/PmaxHealth;
+    }
+    
 
 
 
