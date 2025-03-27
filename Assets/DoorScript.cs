@@ -10,6 +10,7 @@ public class DoorScript : MonoBehaviour
     public int numForDoorToWin;
     public Endlessspawner es;
     public BulletManger bm;
+    public GameObject boss;
     
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,9 @@ public class DoorScript : MonoBehaviour
             es.StopSpawning();
             other.transform.position = level2.position;
             es.DestoyObjects();
+            boss.SetActive(true);
+
+
             
            
         }

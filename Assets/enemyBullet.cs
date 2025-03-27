@@ -15,7 +15,7 @@ public class enemyBullet : MonoBehaviour
     void Start()
     {
         //Destroy(gameObject, 3f);
-        lifespan = 5f;
+        lifespan = 10f;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
