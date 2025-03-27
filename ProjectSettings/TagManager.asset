@@ -12,6 +12,7 @@ TagManager:
   - Level1Door
   - Speed
   - Door
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
+  - Boss
   - 
   - 
   - 

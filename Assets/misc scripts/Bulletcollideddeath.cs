@@ -14,9 +14,17 @@ public class Bulletcollideddeath : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.GetComponent<Health>()?.TakeDamage(damage);
+            Destroy(gameObject);
+
         }
-        
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            collision.GetComponent<Health>()?.TakeDamage(damage);
+            Destroy(gameObject);
+
+        }
+            Destroy(gameObject);
+
     }
 
     public void Start()

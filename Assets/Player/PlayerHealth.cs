@@ -35,7 +35,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-       Gmcode.Gameover =true;
+        BulletManger.killcount = 0;
+        Gmcode.Gameover =true;
       
         
     }
