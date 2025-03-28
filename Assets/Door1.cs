@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
-public class DoorScript : MonoBehaviour
+public class Door1 : MonoBehaviour
 {
-    public Transform level3;
+    // Start is called before the first frame update
+     public Transform level2;
     public GameObject doorspike;
     public int numForDoorToWin;
-    public EnemySpawnerL2 es;
+    public Endlessspawner es;
     public BulletManger bm;
-    public GameObject boss;
+     public GameObject Spawner;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        numForDoorToWin = 30;
+                numForDoorToWin = 10;
+
     }
 
     // Update is called once per frame
@@ -33,10 +34,11 @@ public class DoorScript : MonoBehaviour
         {
             Resetkillcount();
             es.StopSpawning();
-            other.transform.position = level3.position;
+            other.transform.position = level2.position;
             es.DestoyObjects();
-            boss.SetActive(true);
+          Spawner.SetActive(true);
 
+           
 
             
            
@@ -48,5 +50,4 @@ public class DoorScript : MonoBehaviour
      BulletManger.killcount = 0;
 
     }
-    // public static int killcount = 0;
 }

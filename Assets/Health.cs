@@ -9,6 +9,8 @@ public class Health : MonoBehaviour
     
     public float maxHealth;
     public float HP;
+    
+
     //public BulletManger bm;
     void Start()
     {  
@@ -31,6 +33,7 @@ public class Health : MonoBehaviour
     void Die()
     {
         BulletManger.killcount ++;
+       
         
 
         Destroy(gameObject);
