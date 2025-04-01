@@ -15,20 +15,20 @@ public class TimeManager : MonoBehaviour
 
 void Update ()
 {
-    if (GameIsPaused == false && Gameover == true)
+    if (GameIsPaused == false)
     {
-        return;
-    }
-    Time.timeScale += 1f / slowndownLength * Time.unscaledDeltaTime;
-    timeablitycolldown -= Time.unscaledDeltaTime;
 
+   Time.timeScale += 1f / slowndownLength * Time.deltaTime; 
+    timeablitycolldown -= Time.deltaTime;
+        
+    }
     Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
    
 }
 
 public void DoSlowMotion ()
 {
-     if (GameIsPaused == false && Gameover == true)
+     if (GameIsPaused == true && Gameover == true)
     {
         return;
     }
@@ -37,7 +37,7 @@ public void DoSlowMotion ()
                 return;
                 
  Time.timeScale = slowdownFactor;
- Time.fixedDeltaTime = Time.timeScale * 0.02f;
+ Time.fixedDeltaTime = Time.timeScale * 0.05f;
  timeablitycolldown = timecolldown;
 }
     

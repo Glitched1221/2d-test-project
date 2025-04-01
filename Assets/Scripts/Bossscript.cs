@@ -55,11 +55,7 @@ public class Bossscript : MonoBehaviour
 
     void Shoot()
     { 
-        
-        
         {
-
-
             GameObject bullet = Instantiate(bulletprefab, bulletSpawnPoint1.position, firePointRotation.rotation);
             Instantiate(bulletprefab, bulletSpawnPoint2.position, firePointRotation.rotation);
             Instantiate(bulletprefab, bulletSpawnPoint3.position, firePointRotation.rotation);
@@ -70,12 +66,10 @@ public class Bossscript : MonoBehaviour
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-            rb.velocity = firePointRotation.forward * bulletSpeed;
+            //rb.velocity = firePointRotation.forward * bulletSpeed;
             Destroy(bullet, 3f);
             //bulletSpeed
-
         }
-        
     }
 
     public void Update()
@@ -90,17 +84,11 @@ public class Bossscript : MonoBehaviour
             RotateTowardsTarget();
         }
         //ycastHit2D raycastHit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up), 5f, PlayerLayer);
-
-       
         if (shoottimer <= 0f)
         {
             Shoot();
         }
          
-        
-        
-       
-
     }
     
     private void GetTarget()

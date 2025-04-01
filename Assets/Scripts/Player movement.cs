@@ -47,7 +47,7 @@ public class RigidbodyMovement : MonoBehaviour
 
     void Update()
     {
-        cooldowntimer -= Time.deltaTime;
+        cooldowntimer -= Time.unscaledDeltaTime;
         
 
         //if (hpcount.HP > 0)
@@ -81,7 +81,6 @@ public class RigidbodyMovement : MonoBehaviour
     
         if (Input.GetKeyDown(dashkey))
         {
-            rb2d.MovePosition(transform.position + moveDir * dashamount);
             isDashButtonDown = true;
         }
     }

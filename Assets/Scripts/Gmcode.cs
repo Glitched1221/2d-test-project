@@ -59,14 +59,16 @@ public class Gmcode : MonoBehaviour
     public void ResumeGame()
     {
       Pausemenu.SetActive(false);
-      Time.timeScale = 1;
+    Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            Time.timeScale = 1f;
+
       GameIsPaused = false;
     }
    
     public void Pause()
     {
       Pausemenu.SetActive(true);
-      Time.timeScale = 0;
+     Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 0f);
       GameIsPaused = true;
     }
 

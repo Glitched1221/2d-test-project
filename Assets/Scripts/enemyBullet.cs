@@ -47,7 +47,6 @@ public class enemyBullet : MonoBehaviour
            return;
 
         }
-        Destroy(gameObject);
     }
     
   void Update()
