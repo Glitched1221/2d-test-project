@@ -14,7 +14,6 @@ public class HealthBuff : PowerScript
 
     {
         target.GetComponent<PlayerHealth>().PHP += playerHealth.PmaxHealth/5 * amount;
-        target.GetComponent<PlayerHealth>().PHealthUpdate();
 
 
     }
